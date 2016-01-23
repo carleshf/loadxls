@@ -9,7 +9,7 @@
 #' @param verbose If set to \code{TRUE} usefull messages are shown.
 #' @export read_all
 read_all <- function(filename, environment=parent.frame(), verbose=TRUE) {
-    wb <- XLConnect::loadWorkbook("filename", create = FALSE)
+    wb <- XLConnect::loadWorkbook(filename, create = FALSE)
     if(verbose) {
         message("Sheets: ", paste(XLConnect::getSheets(wb), collapse=" "))
     }

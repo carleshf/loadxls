@@ -1,14 +1,16 @@
 library(loadxls)
 
 contect("Testing read_all")
-filename <- paste0(path.package("loadxls"),"/inst/extdata/hnp2015_es.xlsx")
+filename <- paste0(path.package("loadxls"),"/extdata/hnp2015_es.xlsx")
 
 test_that("read_all for all vars", {
     x <- ls()
-    read_all(filename)
+    read_all(filename, verbose=FALSE)
     y <- ls()
 
-    expect_equal(str_length("a"), 1)
-    expect_equal(str_length("ab"), 2)
-    expect_equal(str_length("abc"), 3)
+    expect_equal(sum(
+      c("Country", "Country-Series", "Data", "Series", "Series-Time", "Sheet7") 
+      %in% y), 6)
+    
+    rm(x, y, Country, `Country-Series`, Data, Series, `Series-Time`, Sheet7)
 })
