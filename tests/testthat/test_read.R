@@ -1,10 +1,10 @@
 library(loadxls)
 
-contect("Testing read_all")
-filename <- paste0(path.package("loadxls"),"/extdata/hnp2015_es.xlsx")
+context("Testing read_all")
+
+filename <- system.file("extdata", "hnp2015_es.xlsx", package = "loadxls")
 
 test_that("read_all for all vars", {
-    x <- ls()
     read_all(filename, verbose=FALSE)
     y <- ls()
 
@@ -12,5 +12,19 @@ test_that("read_all for all vars", {
       c("Country", "Country-Series", "Data", "Series", "Series-Time", "Sheet7") 
       %in% y), 6)
     
-    rm(x, y, Country, `Country-Series`, Data, Series, `Series-Time`, Sheet7)
+    rm(y, Country, `Country-Series`, Data, Series, `Series-Time`, Sheet7)
+})
+
+test_that("read_sheet - non name given", {
+    read_sheet(filename, "Country")
+    y <- ls()
+    expect_true("Country" %in% y)
+    rm(Country)
+})
+
+test_that("read_sheet - name given", {
+    read_sheet(filename, "Country", "test")
+    y <- ls()
+    expect_true("test" %in% y)
+    rm(test)
 })

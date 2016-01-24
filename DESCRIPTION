@@ -1,12 +1,15 @@
 Package: loadxls
-Type: Package
-Title: What the Package Does (Title Case)
+Title: Easy reading and writing MS Excel files from R
 Version: 0.1
+Authors@R: c(person("Carles", "Hernandez-Ferrer", , "chernandez@creal.cat", role = c("aut", "cre")))
+Description: Wrapper of XLConnect for easy use to read MS Excel files as 
+    data.frames in the current environment and to write data.frames as new sheets
+    in new or already existing MS Excel File.
+Type: Package
 Date: 2016-01-22
-Author: Who wrote it
-Maintainer: Who to complain to <yourfault@somewhere.net>
-Description: More about what it does (maybe more than one line)
-License: What license is it under?
+Author:  Carles Hernandez-Ferrer [aut, cre],
+Maintainer: Carles Hernandez-Ferrer <chernandez@creal.cat>
+License: Artistic-2.0
 LazyData: TRUE
 Suggests:
     testthat

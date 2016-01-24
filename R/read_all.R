@@ -9,13 +9,11 @@
 #' @param verbose If set to \code{TRUE} usefull messages are shown.
 #' @export read_all
 read_all <- function(filename, environment=parent.frame(), verbose=TRUE) {
-    wb <- XLConnect::loadWorkbook(filename, create = FALSE)
-    if(verbose) {
-        message("Sheets: ", paste(XLConnect::getSheets(wb), collapse=" "))
+    if(!file.exists(filename)) {
+        stop("Given file '", filename, "' does not exists.")
     }
-
-    sh <- XLConnect::getSheets(wb)
-    trash <- lapply(sh, function(sheet) {
+    wb <- XLConnect::loadWorkbook(filename, create=FALSE)
+    trash <- lapply(XLConnect::getSheets(wb), function(sheet) {
         if(verbose) {
             message("Loading sheet '", sheet, "'.")
         }
