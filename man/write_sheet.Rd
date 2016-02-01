@@ -4,7 +4,8 @@
 \alias{write_sheet}
 \title{Write single object to a MS Excel File}
 \usage{
-write_sheet(data, sheetname, filename, replace = FALSE, verbose = TRUE)
+write_sheet(data, sheetname, filename, include.rownames = FALSE,
+  replace = FALSE, verbose = TRUE)
 }
 \arguments{
 \item{data}{\code{data.frame} to be saved as sheet in a MS Excel File.}
@@ -12,6 +13,9 @@ write_sheet(data, sheetname, filename, replace = FALSE, verbose = TRUE)
 \item{sheetname}{Name to be given to the sheet.}
 
 \item{filename}{The path and the name to the MS Excel File.}
+
+\item{include.rownames}{If set to \code{TRUE} adds the \code{data.frame}'s
+rownames as a new column in the sheet.}
 
 \item{replace}{If set to \code{TRUE} it replaces the content of the
 given sheet with the current value of \code{data}.}

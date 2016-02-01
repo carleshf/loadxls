@@ -5,9 +5,11 @@
 #'
 #' @param ... \code{data.frame}s to be saved as sheets in a MS Excel File.
 #' @param filename The path and the name to the MS Excel File.
+#' @param include.rownames If set to \code{TRUE} adds the \code{data.frame}'s
+#' rownames as a new column in the sheet.
 #' @param verbose If set to \code{TRUE} usefull messages are shown.
 #' @export write_all
-write_all <- function(..., filename, verbose=TRUE) {
+write_all <- function(..., filename, include.rownames=FALSE, verbose=TRUE) {
     if(verbose & file.exists(filename)) {
         warning("Given file '", filename, "' already exists.")
     }
@@ -16,10 +18,21 @@ write_all <- function(..., filename, verbose=TRUE) {
     elms <- as.character(substitute(list(...)))[-1L]
     trash <- lapply(elms, function(sheetname) {
         if(verbose) {
-            message("Saveing object '", sheetname, "'.")
+            if(include.rownames) {
+                message("Saveing object '", sheetname, "' with data.frame's rownames.")
+            } else {
+                message("Saveing object '", sheetname, "'.")
+            }
+        }
+        data <- get(sheetname)
+        if(include.rownames) {
+            cn <- colnames(data)   
+            data$row.names.loadxls <- rownames(data)
+            data <- data[ , c("row.names.loadxls", cn)]
+            colnames(data) <- c("", cn)
         }
         XLConnect::createSheet(wb, name=sheetname)
-        XLConnect::writeWorksheet(wb, data=get(sheetname), 
+        XLConnect::writeWorksheet(wb, data=data, 
                                   sheet=sheetname, header=TRUE)
     })
     XLConnect::saveWorkbook(wb)

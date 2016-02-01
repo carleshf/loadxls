@@ -1,6 +1,6 @@
 Package: loadxls
 Title: Easy reading and writing MS Excel files from R
-Version: 0.1
+Version: 0.2
 Authors@R: c(person("Carles", "Hernandez-Ferrer", , "chernandez@creal.cat", role = c("aut", "cre")))
 Description: Wrapper of XLConnect for easy use to read MS Excel files as 
     data.frames in the current environment and to write data.frames as new sheets

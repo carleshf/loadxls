@@ -4,12 +4,15 @@
 \alias{write_all}
 \title{Write objects to a MS Excel File}
 \usage{
-write_all(..., filename, verbose = TRUE)
+write_all(..., filename, include.rownames = FALSE, verbose = TRUE)
 }
 \arguments{
 \item{...}{\code{data.frame}s to be saved as sheets in a MS Excel File.}
 
 \item{filename}{The path and the name to the MS Excel File.}
+
+\item{include.rownames}{If set to \code{TRUE} adds the \code{data.frame}'s
+rownames as a new column in the sheet.}
 
 \item{verbose}{If set to \code{TRUE} usefull messages are shown.}
 }
