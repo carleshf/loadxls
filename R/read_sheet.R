@@ -1,6 +1,6 @@
 #' Load a single sheet of MS Excel File
 #'
-#' Given a MS Excel File and the name of a sheet it loads the sheet contentent
+#' Given a MS Excel File and the name of a sheet it loads the sheet content
 #' as variables.
 #'
 #' @param filename The path and the name to the MS Excel File.
@@ -9,10 +9,12 @@
 #' default is parent environment.
 #' @param varname If not missing, is the name of the new variable filled with
 #' the content of the specified sheet.
-#' @param verbose If set to \code{TRUE} usefull messages are shown.
+#' @param verbose If set to \code{TRUE} useful messages are shown.
+#' @param free.warnings If set to \code{TRUE} it shows any warnings
+#' result of loading the content of the book's sheets.
 #' @export read_sheet
 read_sheet <- function(filename, sheetname, varname, environment=parent.frame(), 
-                     verbose=TRUE) {
+        verbose=TRUE, free.warnings=TRUE) {
     if(!file.exists(filename)) {
         stop("Given file '", filename, "' does not exists.")
     }
@@ -23,7 +25,13 @@ read_sheet <- function(filename, sheetname, varname, environment=parent.frame(),
     if(verbose) {
         message("Loading sheet '", sheetname, "'.")
     }
-    var <- XLConnect::readWorksheet(wb, sheetname)
+    if(!free.warnings) {
+        suppressWarnings({
+            var <- XLConnect::readWorksheet(wb, sheetname)
+        })
+    } else {
+        var <- XLConnect::readWorksheet(wb, sheetname)
+    }
     if(missing(varname)) {
         assign(sheetname, var, envir=environment)
     } else {

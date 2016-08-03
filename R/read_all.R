@@ -6,9 +6,12 @@
 #' @param filename The path and the name to the MS Excel File.
 #' @param environment Environment were the new variables will be located. By
 #' default is parent environment.
-#' @param verbose If set to \code{TRUE} usefull messages are shown.
+#' @param verbose If set to \code{TRUE} useful messages are shown.
+#' @param free.warnings If set to \code{TRUE} it shows any warnings
+#' result of loading the content of the book's sheets.
 #' @export read_all
-read_all <- function(filename, environment=parent.frame(), verbose=TRUE) {
+read_all <- function(filename, environment=parent.frame(), verbose=TRUE,
+        free.warnings=TRUE) {
     if(!file.exists(filename)) {
         stop("Given file '", filename, "' does not exists.")
     }
@@ -17,7 +20,13 @@ read_all <- function(filename, environment=parent.frame(), verbose=TRUE) {
         if(verbose) {
             message("Loading sheet '", sheet, "'.")
         }
+        if(!free.warnings) {
+        suppressWarnings({
+            var <- XLConnect::readWorksheet(wb, sheet)
+        })
+    } else {
         var <- XLConnect::readWorksheet(wb, sheet)
+    }
         assign(sheet, var, envir=environment)
     })
     rm(trash)

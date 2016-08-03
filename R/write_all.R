@@ -7,7 +7,7 @@
 #' @param filename The path and the name to the MS Excel File.
 #' @param include.rownames If set to \code{TRUE} adds the \code{data.frame}'s
 #' rownames as a new column in the sheet.
-#' @param verbose If set to \code{TRUE} usefull messages are shown.
+#' @param verbose If set to \code{TRUE} useful messages are shown.
 #' @export write_all
 write_all <- function(..., filename, include.rownames=FALSE, verbose=TRUE) {
     if(verbose & file.exists(filename)) {
@@ -19,9 +19,9 @@ write_all <- function(..., filename, include.rownames=FALSE, verbose=TRUE) {
     trash <- lapply(elms, function(sheetname) {
         if(verbose) {
             if(include.rownames) {
-                message("Saveing object '", sheetname, "' with data.frame's rownames.")
+                message("Saving object '", sheetname, "' with data.frame's row-names.")
             } else {
-                message("Saveing object '", sheetname, "'.")
+                message("Saving object '", sheetname, "'.")
             }
         }
         data <- get(sheetname)

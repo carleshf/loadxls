@@ -9,7 +9,7 @@
 #' given sheet with the current value of \code{data}.
 #' @param include.rownames If set to \code{TRUE} adds the \code{data.frame}'s
 #' rownames as a new column in the sheet.
-#' @param verbose If set to \code{TRUE} usefull messages are shown.
+#' @param verbose If set to \code{TRUE} useful messages are shown.
 #' @export write_sheet
 write_sheet <- function(data, sheetname, filename, include.rownames=FALSE, replace=FALSE,
                         verbose=TRUE) {
