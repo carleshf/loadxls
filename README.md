@@ -14,7 +14,7 @@ install_github("carleshf/loadxls")
 
 `loadxls` implements four functions:
 
- 1. `read_all`: This functions load the full content of a MS Excel file into the current workspace.
- 2. `read_sheet`: This functions load a specific sheet of a MS Excel file into the current workspace.
- 3. `write_all`: This function writes the given objects to a MS Excel file, creating a sheet for each object.
- 4. `write_sheet`: This function writes a given object to a specified sheet of a MS Excel file.
+ 1. `read_all`: This function loads the full content of a MS Excel file into the current workspace, using sheet's names to create the variables.
+ 2. `read_sheet`: This function loads a specific sheet of a MS Excel file into the current workspace.
+ 3. `write_all`: This function writes the given `data.frame`s to a MS Excel file, creating a sheet for each `data.frame`.
+ 4. `write_sheet`: This function writes a given `data.frame` to a specified sheet of a MS Excel file.
